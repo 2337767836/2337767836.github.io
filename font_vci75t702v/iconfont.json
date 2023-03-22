@@ -1,0 +1,72 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1077",
+      "name": "食物",
+      "font_class": "shiwu",
+      "unicode": "f0094",
+      "unicode_decimal": 983188
+    },
+    {
+      "icon_id": "5027",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "3448",
+      "unicode_decimal": 13384
+    },
+    {
+      "icon_id": "750910",
+      "name": "男装",
+      "font_class": "nanzhuang",
+      "unicode": "e7b5",
+      "unicode_decimal": 59317
+    },
+    {
+      "icon_id": "750913",
+      "name": "女装",
+      "font_class": "nvzhuang",
+      "unicode": "e7b7",
+      "unicode_decimal": 59319
+    },
+    {
+      "icon_id": "1048410",
+      "name": "美妆类目",
+      "font_class": "meizhuangleimu",
+      "unicode": "e6e6",
+      "unicode_decimal": 59110
+    },
+    {
+      "icon_id": "1048419",
+      "name": "母婴类目",
+      "font_class": "muyingleimu",
+      "unicode": "e6ef",
+      "unicode_decimal": 59119
+    },
+    {
+      "icon_id": "1048422",
+      "name": "食品类目",
+      "font_class": "shipinleimu",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "1486825",
+      "name": "家居",
+      "font_class": "jiaju",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "22870434",
+      "name": "鞋靴",
+      "font_class": "pinleitubiao_xiexue",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    }
+  ]
+}
