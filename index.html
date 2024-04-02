@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://passer-by.com/relationship/dist/relationship.min.js"></script>
+    <style>
+        .contain{
+            width: 400px;
+            height: 600px;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px;
+        }
+        .show{
+            width: 100%;
+            height: 200px;
+            border-bottom: 1px dashed;
+        }
+        .action{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+            width: 100%;
+            height: 400px;
+        }
+        .action > div{
+            width: 90px;
+            height: 90px;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 5px;
+        }
+        #sex{
+            width: 100%;
+            height: 20px;
+        }
+        #all{
+            width: 100%;
+            height: 120px;
+        }
+        #content{
+            /* width: 100%; */
+            height: 50px;
+            padding: 5px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="show">
+            <div id="sex" style="display: flex; justify-content: center;">
+                <div style="margin: 0 5px;">性别选择：</div>
+                <div style="margin: 0 5px;">
+                    <input id="man" type="radio" name="sex" value="1" checked style="margin: 0 5px;" >男
+                </div>
+                <div style="margin: 0 5px;">
+                    <input id="woman" type="radio" name="sex" value="0" style="margin: 0 5px;">女
+                </div>
+            </div>
+            <div id="all"></div>
+            <div id="content">我的</div>
+        </div>
+        <div class="action">
+            <div class="item relationship" data-name="丈夫">夫</div>
+            <div class="item relationship" data-name="妻子">妻</div>
+            <div class="item relationship" data-name="爸爸">父</div>
+            <div class="item relationship" data-name="妈妈">母</div>
+            <div class="item relationship" data-name="儿子">子</div>
+            <div class="item relationship" data-name="女儿">女</div>
+            <div class="item relationship" data-name="哥哥">兄</div>
+            <div class="item relationship" data-name="弟弟">弟</div>
+            <div class="item relationship" data-name="姐姐">姐</div>
+            <div class="item relationship" data-name="妹妹">妹</div>
+            <div class="item" id="celAll">清空</div>
+            <div class="item" id="del">删除</div>
+            <div class="item" id="show" style="width: 90%;">查看</div>
+        </div>
+    </div>
+    
+
+
+
+    <script type="text/javascript">
+        let relationships = document.getElementsByClassName('relationship')
+        let celAll = document.getElementById('celAll')
+        let del = document.getElementById('del')
+        let show = document.getElementById('show')
+        let content = document.getElementById('content')
+        let all = document.getElementById('all')
+        let relationshipArr = []
+        let man = document.getElementById('man')
+        let woman = document.getElementById('woman')
+        
+
+        celAll.addEventListener('click',function(){
+            all.innerHTML = ''
+            relationshipArr = []
+            content.innerHTML = '我的'
+        })
+        
+        del.addEventListener('click',function(e){
+            if(relationshipArr.length == 0) return
+            if(relationshipArr.length == 1 && all.innerHTML == ''){
+                relationshipArr.pop()
+                content.innerHTML = content.innerHTML.slice(0,content.innerHTML.length - 2)
+            }else if(relationshipArr.length > 1 && all.innerHTML == ''){
+                relationshipArr.pop()
+                content.innerHTML = content.innerHTML.slice(0,content.innerHTML.length - 3)
+            }
+        })
+
+        for(let i = 0; i < relationships.length; i++){
+            relationships[i].addEventListener('click',function(e){
+                console.log(e.target.dataset.name)
+                relationshipArr.push(e.target.dataset.name)
+                if(content.innerHTML == '我的'){
+                    content.innerHTML += e.target.dataset.name
+                }else{
+                    content.innerHTML += '的' + e.target.dataset.name
+                }
+                
+            })
+        }
+
+        man.addEventListener('change',function(e){
+            sex = e.target.value
+        })
+        woman.addEventListener('change',function(e){
+            sex = e.target.value
+        })
+
+        show.addEventListener('click',function(){
+            if(relationshipArr.length == 0) return
+            let option={
+                text:'',		    // 目标对象：目标对象的称谓汉字表达，称谓间用‘的’字分隔
+                target:'',	    	// 相对对象：相对对象的称谓汉字表达，称谓间用‘的’字分隔，空表示自己
+                sex: 1,			    // 本人性别：0表示女性,1表示男性
+                type:'default',		// 转换类型：'default'计算称谓,'chain'计算关系链,'pair'计算关系合称
+                reverse:false,		// 称呼方式：true对方称呼我,false我称呼对方
+                mode:'default',		// 模式选择：使用setMode方法定制不同地区模式，在此选择自定义模式
+                optimal:false,      // 最短关系：计算两者之间的最短关系
+            }
+            option.text = relationshipArr.join('的')
+            option.sex = sex
+            all.innerHTML = content.innerHTML
+            content.innerHTML = relationship(option).join(',')
+        })
+        
+
+
+
+
+
+
+ 
+    </script>
+</body>
